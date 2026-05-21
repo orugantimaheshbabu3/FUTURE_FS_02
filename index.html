@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini CRM - Client Lead Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-briefcase"></i>
+                <span>Mini CRM</span>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav-item active" data-view="dashboard"><i class="fas fa-chart-line"></i> Dashboard</li>
+                    <li class="nav-item" data-view="leads"><i class="fas fa-users"></i> Leads</li>
+                    <li class="nav-item" data-view="add-lead"><i class="fas fa-user-plus"></i> Add Lead</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1 id="view-title">Dashboard</h1>
+                <div class="user-info">
+                    <span>Admin Panel</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <section id="dashboard-view" class="view">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Leads</h3>
+                        <p id="total-leads">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Contacted</h3>
+                        <p id="contacted-leads">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Converted</h3>
+                        <p id="converted-leads">0</p>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h2>Recent Leads</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-leads-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="leads-view" class="view hidden">
+                <div class="filters">
+                    <input type="text" id="search-input" placeholder="Search leads...">
+                    <select id="status-filter">
+                        <option value="all">All Status</option>
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Converted">Converted</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Source</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="add-lead-view" class="view hidden">
+                <div class="form-container">
+                    <form id="lead-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="source">Lead Source</label>
+                            <select id="source">
+                                <option value="Website">Website</option>
+                                <option value="Referral">Referral</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Initial Notes</label>
+                            <textarea id="notes" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Lead</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal-btn">&times;</span>
+            <h2>Update Lead</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label for="edit-status">Status</label>
+                    <select id="edit-status">
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Converted">Converted</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-notes">Follow-up Notes</label>
+                    <textarea id="edit-notes" rows="4"></textarea>
+                </div>
+                <button type="submit" id="save-changes-btn" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
